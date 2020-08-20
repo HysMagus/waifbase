@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "waifbase",
+    "waifbase-dev": "waifbase-dev"
+  }
+}
