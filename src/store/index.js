@@ -5,11 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    allFiles: []
+    allFiles: [],
+    isError: false
   },
   mutations: {
     addFile (state, item) {
       state.allFiles.unshift(item)
+    },
+
+    isError (state, value) {
+      state.isError = value
     }
   },
   actions: {

@@ -36,7 +36,7 @@
         <router-link to="/"><img class="logo" src="./assets/logo.png"/></router-link>
 
         <div class="right-nav">
-          <input  v-if="!uploadFile" type="file" id="myFile" accept="image/*" v-on:change="upload" />
+          <input  v-if="!uploadFile && !this.$store.state.isError" type="file" id="myFile" accept="image/*" v-on:change="upload" />
 
           <div v-if="uploadFile">
             <img src="./assets/loading.gif" width=20 height=20 v-if="uploading" />

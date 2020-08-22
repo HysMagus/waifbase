@@ -5,6 +5,12 @@
       <img src="../assets/loading.gif"/>
     </div>
 
+    <div class="loading" v-else-if="this.error">
+      <h2>{{ this.error }}</h2>
+      <img src="../assets/waifbase-chan.png"/>
+      <h2>We appreciate your patience.</h2>
+    </div>
+
     <a v-else :href="item" target="_blank" v-for="item in this.$store.state.allFiles" :key="item">
       <img :src="item" />
     </a>
@@ -22,7 +28,8 @@ export default {
   data () {
     return {
       allFiles: [],
-      loading: false
+      loading: false,
+      error: ''
     }
   },
 
@@ -40,6 +47,10 @@ export default {
             this.loading = false
           })
         })
+      }).catch(() => {
+        this.$store.commit('isError', true)
+        this.error = 'Please come back tomorrow, we ran out of bandwidth for today.'
+        this.loading = false
       })
     })
   }
@@ -96,6 +107,11 @@ a {
     height: 200px;
     padding: 0;
     margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 5vw;
   }
 }
 
