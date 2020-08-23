@@ -8,7 +8,7 @@
     <div class="loading" v-else-if="this.error">
       <h2>{{ this.error }}</h2>
       <img src="../assets/waifbase-chan.png"/>
-      <h2>We appreciate your patience.</h2>
+      <h2>{{ errorPhrases[pickedError] }}</h2>
     </div>
 
     <a v-else :href="item" target="_blank" v-for="item in this.$store.state.allFiles" :key="item">
@@ -29,7 +29,22 @@ export default {
     return {
       allFiles: [],
       loading: false,
-      error: ''
+      error: '',
+      pickedError: 0,
+      errorPhrases: [
+        'I appreciate your patience desu.',
+        'N..not like I wanted to give you memes or anything, baka.',
+        'Eeeeeh? someone before you stole all the memes!',
+        'You are too late. lol',
+        'Nothing personal kid.',
+        'Probably for the best, you really don\'t wanna see what\'s behind me.',
+        'Ayaya!',
+        'If you really want to destroy a man, you don\'t need to kill him. You just need to close the Waifbase.',
+        'You can rely on me!! ...tomorrow that is.',
+        'We were born just in time to witness the Waifu age!',
+        'Don\t ever give up!',
+        'I\'m always alone, too.'
+      ]
     }
   },
 
@@ -50,6 +65,7 @@ export default {
       }).catch(() => {
         this.$store.commit('isError', true)
         this.error = 'Please come back tomorrow, we ran out of bandwidth for today.'
+        this.pickedError = Math.floor((Math.random() * 10) + 1) - 1
         this.loading = false
       })
     })
